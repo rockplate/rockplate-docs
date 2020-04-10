@@ -1,5 +1,6 @@
 # compiled output
 .next
+out/
 
 # dependencies
 node_modules
