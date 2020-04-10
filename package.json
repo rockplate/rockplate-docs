@@ -11,8 +11,8 @@
     "deploy": "npm run build && npm run export"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Safraz Razik",
+  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
