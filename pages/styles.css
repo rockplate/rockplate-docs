@@ -1,0 +1,81 @@
+/* .cm-s-dracula span.cm-keyword {
+  color: #f0f;
+} */
+
+.cm-s-dracula span.cm-atom {
+  color: #f4c20b;
+}
+
+.cm-s-dracula span.cm-tag {
+  color: #aaa;
+}
+
+.cm-s-dracula span.cm-variable-2 {
+  color: #66d9ef;
+}
+
+/* Fixes for Docusaurus */
+.CodeMirror {
+  text-align: left;
+}
+
+.CodeMirror-lint-tooltip {
+  height: auto;
+  display: block;
+}
+/* END Fixes for Docusaurus */
+
+.cool-text {
+  color: red;
+  font-size: 22px;
+}
+
+.cm-inline-wrapper .CodeMirror {
+  height: auto;
+}
+
+.code-tabs-wrapper pre {
+  font-size: 1rem;
+  white-space: pre-wrap;
+}
+
+code {
+  /* color: #42ff00;
+  background-color: #111; */
+  padding: 3px 5px;
+  color: #000;
+  background-color: #dadadd;
+  font-weight: bold;
+}
+
+.highlight-wrapper {
+  margin-bottom: 1rem;
+}
+
+.highlight-container .MuiCardContent-root {
+  /* padding: 16px !important; */
+  padding: 0.5rem !important;
+}
+
+.code-tabs-wrapper .MuiCardContent-root {
+  /* padding: 0.75rem !important; */
+  padding: 1rem !important;
+}
+
+.code-tabs-wrapper pre {
+  margin: 0;
+}
+
+@media (max-width: 959px) {
+  .params-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    margin-top: -0.83em !important;
+    margin-top: -1.66em !important;
+  }
+}
+
+.appbar-homepage.appbar-homepage-muted h6 {
+  visibility: hidden;
+}

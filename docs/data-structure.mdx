@@ -1,0 +1,121 @@
+# Data Structure
+
+<!-- In `Rockplate` 3 types of data are supported -->
+
+- Primitives
+  - Booleans
+  - Identifiers
+- Non Primitives
+  - Arrays
+
+## Primitives
+
+Primitives are identified with `Object` and `Property`
+
+You should create an object identified by a string key
+
+E.g: Order object identified by `"order"`
+
+```json
+{
+  "order": {
+    "paid": true,
+    "total": "$450.00"
+  }
+}
+```
+
+```rockplate
+Total: [order total]
+
+[if order is paid]
+  Paid
+[end if]
+```
+
+Two types of primitive types are supported: `Booleans` and `Identifiers`
+
+### Booleans
+
+Booleans are equivalant to JavaScript/JSON boolean values. Only accepted values are `true` and `false`
+
+E.g: Order object with `"paid"` boolean property
+
+```json
+{
+  "order": {
+    "paid": true
+  }
+}
+```
+
+```rockplate
+[if order is paid]
+  Paid
+[end if]
+```
+
+### Identifiers
+
+Primitive variables other than booleans are called identifiers. Commonly these are strings, but can be any JavaScript/JSON primitive values including numbers.
+
+E.g: Order object with `"total"` identifier property
+
+```json
+{
+  "order": {
+    "total": "$450.00"
+  }
+}
+```
+
+```rockplate
+Total: [order total]
+```
+
+### Usage of primitive variables
+
+```rockplate
+Total: [order total]
+
+[if order is paid]
+  Paid
+[end if]
+```
+
+## Arrays
+
+Arrays are collections of `Identifiers` or `Booleans`
+
+You should create an array identified by a string key
+
+E.g: Orders array identified by `"orders"`
+
+```json
+{
+  "orders": [
+    {
+      "order": {
+        "paid": true,
+        "total": "$450.00"
+      }
+    },
+    {
+      "order": {
+        "paid": false,
+        "total": "$280.00"
+      }
+    }
+  ]
+}
+```
+
+```rockplate
+[repeat orders]
+  Total: [order total]
+
+  [if order is paid]
+    Paid
+  [end if]
+[end repeat]
+```
