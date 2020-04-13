@@ -3,6 +3,7 @@ import { ComponentType } from 'react';
 // import { CodeProps } from './CodeTabs';
 import { HighlightProps } from './Highlight';
 
+export const LandingDemo = getComponent('LandingDemo');
 export const RockPlateIntro = getComponent('rockplate-intro-block');
 interface CodeTabsProps {
   template?: string;

@@ -12,12 +12,34 @@ export default class RockplateDocsDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={themeColor} />
+          <title>Rockplate</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         </Head>
         <body>
           <Main />
           <NextScript />
           <script src="https://unpkg.com/jsonlint@1.6.3/web/jsonlint.js"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+              t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+              t._e.push(f);
+            };
+
+            return t;
+          }(document, "script", "twitter-wjs"));`,
+            }}
+          />
         </body>
       </html>
     );

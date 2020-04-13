@@ -13,6 +13,9 @@ import { MDXProvider } from '@mdx-js/react';
 
 import { Highlight } from '../rockplate/components';
 
+import NextLink from 'next/link';
+import Link from '@material-ui/core/Link';
+
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/lint/lint.css';
 import 'codemirror/addon/fold/foldgutter.css';
@@ -23,10 +26,24 @@ import 'codemirror/theme/monokai.css';
 import './styles.css';
 // }
 
+const NextLinkWrapped = (props: any) => (
+  <NextLink href={props.href} passHref>
+    <a className={props.className}>{props.children}</a>
+  </NextLink>
+);
+
 const mdxComponents = {
   pre: (props: any) => <div className="highlight-wrapper" {...props} />,
   code: (props: any) => {
     return <Highlight {...props} />;
+  },
+  a: (props: any) => {
+    return <Link component={NextLinkWrapped} {...props} />;
+    return (
+      <NextLink {...props} passHref>
+        <Link {...props} />;
+      </NextLink>
+    );
   },
 };
 
@@ -67,10 +84,8 @@ export default class RockplateDocsApp extends App<{}, {}, { themeOptions: ThemeO
     const theme = createMuiTheme(this.state.themeOptions);
     return (
       <React.Fragment>
-        <Head>
-          <title>Rockplate</title>
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        </Head>
+        {/* <Head>
+        </Head> */}
         <ThemeProvider theme={theme}>
           <MDXProvider components={mdxComponents}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

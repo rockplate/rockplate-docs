@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -27,7 +27,8 @@ import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 
-import Link from 'next/link';
+import Link from '@material-ui/core/Link';
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
 const darkTheme = createMuiTheme({
@@ -38,27 +39,28 @@ const darkTheme = createMuiTheme({
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const useStyles = makeStyles((theme: Theme) => {
+  const breakpoint = theme.breakpoints.up('md');
+  return createStyles({
     root: {
       display: 'flex',
     },
     drawer: {
-      [theme.breakpoints.up('sm')]: {
+      [breakpoint]: {
         width: drawerWidth,
         flexShrink: 0,
       },
     },
     appBar: {
       backgroundColor: '#fafafa',
-      [theme.breakpoints.up('sm')]: {
+      [breakpoint]: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
       },
     },
     menuButton: {
       marginRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
+      [breakpoint]: {
         display: 'none',
       },
     },
@@ -69,13 +71,14 @@ const useStyles = makeStyles((theme: Theme) =>
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
+      width: '100%',
     },
 
     title: {
       flexGrow: 1,
     },
-  }),
-);
+  });
+});
 
 interface LayoutProps {
   /**
@@ -175,6 +178,12 @@ export default function Layout(props: LayoutProps) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  useEffect(() => {
+    if ((window as any).twttr !== undefined && (window as any).twttr.widgets !== undefined) {
+      (window as any).twttr.widgets.load();
+    }
+  });
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -223,11 +232,11 @@ export default function Layout(props: LayoutProps) {
             link: '/linter',
           },
         ].map((menu, index) => (
-          <Link key={menu.title} href={menu.link} passHref>
+          <NextLink key={menu.title} href={menu.link} passHref>
             <ListItem button component="a" selected={isSelected(menu)}>
               <ListItemText primary={menu.title} />
             </ListItem>
-          </Link>
+          </NextLink>
         ))}
       </List>
       <Divider />
@@ -300,7 +309,7 @@ export default function Layout(props: LayoutProps) {
       <ThemeProvider theme={darkTheme}>
         <nav className={classes.drawer} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-          <Hidden smUp implementation="css">
+          <Hidden mdUp implementation="css">
             <Drawer
               container={container}
               variant="temporary"
@@ -317,7 +326,7 @@ export default function Layout(props: LayoutProps) {
               {drawer}
             </Drawer>
           </Hidden>
-          <Hidden xsDown implementation="css">
+          <Hidden smDown implementation="css">
             <Drawer
               classes={{
                 paper: classes.drawerPaper,
@@ -333,6 +342,24 @@ export default function Layout(props: LayoutProps) {
       <main className={classes.content}>
         <Toolbar id="back-to-top-anchor" />
         {props.children}
+        <Divider style={{ marginTop: '30px' }} />
+        <div style={{ marginTop: '20px', marginBottom: '0', textAlign: 'center' }}>
+          <div>
+            Made with love from&nbsp;
+            <Link href="https://safrazik.com">Safraz Razik</Link>
+          </div>
+          <div style={{ marginTop: '10px' }}>
+            {/* <a href="#">@safrazik</a> */}
+            <a
+              href="https://twitter.com/safrazik?ref_src=twsrc%5Etfw"
+              className="twitter-follow-button"
+              data-size="large"
+              data-show-count="false"
+            >
+              Follow @safrazik
+            </a>
+          </div>
+        </div>
         <ScrollTop {...props}>
           <Fab color="secondary" size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
