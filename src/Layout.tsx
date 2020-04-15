@@ -285,15 +285,19 @@ export default function Layout(props: LayoutProps) {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap className={classes.title}>
-              <img
-                src="https://avatars3.githubusercontent.com/u/61226601?s=200&v=4"
-                style={{
-                  height: '40px',
-                  marginRight: '8px',
-                  verticalAlign: 'middle',
-                }}
-              />
-              Rockplate
+              <NextLink href="/" passHref>
+                <Link style={{ color: 'inherit', textDecoration: 'none' }}>
+                  <img
+                    src="https://avatars3.githubusercontent.com/u/61226601?s=200&v=4"
+                    style={{
+                      height: '40px',
+                      marginRight: '8px',
+                      verticalAlign: 'middle',
+                    }}
+                  />
+                  Rockplate
+                </Link>
+              </NextLink>
             </Typography>
             <IconButton
               color="inherit"
