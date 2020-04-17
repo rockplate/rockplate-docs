@@ -84,8 +84,9 @@ export default class RockplateDocsApp extends App<{}, {}, { themeOptions: ThemeO
     const theme = createMuiTheme(this.state.themeOptions);
     return (
       <React.Fragment>
-        {/* <Head>
-        </Head> */}
+        <Head>
+          <title>Rockplate</title>
+        </Head>
         <ThemeProvider theme={theme}>
           <MDXProvider components={mdxComponents}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

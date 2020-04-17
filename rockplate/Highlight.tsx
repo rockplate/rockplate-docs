@@ -48,12 +48,12 @@ export default class Highlight extends React.Component<
   }
   render() {
     if (this.language === 'rockplate:tabs') {
-      const builder = new Builder(this.state.code);
+      const builder = new Builder<any>(this.state.code);
       builder.build();
       if (builder.schema) {
-        return (
-          <CodeTabs template={builder.template.trim()} schema={builder.schema} params={builder.schema} strict={true} />
-        );
+        const schema = builder.schema.schema ? builder.schema.schema : builder.schema;
+        const params = builder.schema.params ? builder.schema.params : schema;
+        return <CodeTabs template={builder.template.trim()} schema={schema} params={params} strict={true} />;
       }
       this.language = 'rockplate';
     }

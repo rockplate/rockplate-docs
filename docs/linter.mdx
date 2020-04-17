@@ -1,1 +1,124 @@
 # Linter
+
+## Table of Contents
+
+## Introduction
+
+As Rockplate is a templating language, any syntax error you make or any invalid expression or invalid if blocks/repeat blocks are just ignored without throwing any errors.
+
+As a result, error handling becomes a challenge. Thanks to the built in **Linter** that comes as a life saver for this purpose.
+
+```rockplate:tabs
+{}
+I will yell at you [oh no
+```
+
+## Usage
+
+JavaScript/TypeScript
+
+```javascript
+import { Linter } from 'rockplate';
+// var Linter = window.rockplate.Linter; // when using <script> include
+
+const template = 'My age is [my age]';
+const schema = {
+  my: {
+    name: 'My Name',
+    // age is undefined
+  },
+};
+const linter = new Linter(template, schema);
+// wait for linter.build().then(... when using async
+const result = linter.lint({
+  my: {
+    name: 'John',
+  },
+});
+console.log(result.lints.length); // 1
+console.log(result.lints[0].message); // Unavailable: Property "age" on Object "my"
+```
+
+```rockplate:tabs
+{
+    "my": {
+        "name": "My Name"
+    }
+}
+My age is [my age]
+```
+
+## Warnings
+
+Warnings occur when you provide any params incompatible to your schema in strict mode.
+
+`schema`
+
+```json
+{
+  "my": {
+    "name": "My Name"
+  }
+}
+```
+
+`params` (note the extra property `age` which is not available in the `schema`)
+
+```json
+{
+  "my": {
+    "name": "John",
+    "age": 20
+  }
+}
+```
+
+```javascript
+const linter = new Linter(template, schema);
+const result = linter.lint(params);
+```
+
+Try toggling the strict mode switch to on/off (in schema tab) to see the difference in output and lints.
+
+```rockplate:tabs
+{
+  "schema": {
+    "my": {
+      "name": "My Name"
+    }
+  },
+  "params": {
+    "my": {
+      "name": "John",
+      "age": 20
+    }
+  }
+}
+My name is [my name]
+My age is [my age]
+```
+
+## Complete Example
+
+```rockplate:tabs
+{
+  "schema": {
+    "my": {
+      "name": "My Name"
+    }
+  },
+  "params": {
+    "my": {
+      "name": "Safraz",
+      "username": "safrazik"
+    }
+  }
+}
+Warning - Illegal Identifier: [my username] (not available in schema, but passed in params)
+Property Unavailable: [my age]
+Identifier Unavailable: [your name]
+Not a boolean Property: [if my is name] [end if]
+Not an array [repeat us][end repeat]
+Boolean Unavailable: [if you are ok] [end if]
+Inavalid Expression [my name
+```

@@ -1,0 +1,192 @@
+# Syntax
+
+## Table of Contents
+
+## Introduction
+
+All the code related to Rockplate start with `[` and ends with `]`. To separate keywords and identifers `space` is used as a delimiter.
+
+```rockplate
+You can have [rockplate syntax] in between
+an HTML, CSS, XML, plain text
+or ANY text content
+```
+
+a complex example:
+
+```rockplate
+<div class="[container classname]">
+    <a href="[home link]">Go home</a>
+    <p>This is awesome</p>
+    <ul>
+    [repeat items]
+      <li>
+        <h3>[item name]</h3>
+        <p>
+          [item description]
+          [if item is free]
+            <span class="highlight">FREE</span>
+          [end if]
+        </p>
+      </li>
+    [end repeat]
+    </ul>
+</div>
+<style>
+  .[container classname] {
+    max-width: [container width];
+  }
+</style>
+```
+
+## Comments
+
+Comments start with `[--` and ends with `--]`. In between it can have any text.
+
+Syntax notation:
+
+`[` `--` `zero or more characters` `--` `]`
+
+<!-- Syntax: `[--` `zero or more characters` `--]` -->
+
+```rockplate
+This is [-- a comment --] among other text
+
+Comments can have
+[--
+  multiple
+  lines
+--]
+
+Other expressions [-- within the comment block
+have no [special meaning] --]
+
+```
+
+## Expressions - Identifers
+
+Expressions can be used to print [Identifiers](/data-structure#identifers)
+
+Syntax notation:
+
+`[` `OBJECT` `space` `IDENTIFIER_PROPERTY` `]`
+
+```json
+{
+  "order": {
+    "ref": "210045-674558-981560"
+  }
+}
+```
+
+```rockplate
+Dear customer,
+Your order [order ref] is on the way.
+Thank you.
+```
+
+## If blocks - Booleans
+
+If blocks can be used to make use of [Booleans](/data-structure#booleans)
+
+Syntax notation:
+
+`[` `if` `space` `OBJECT` `space` `operator` `space` `BOOLEAN_PROPERTY` `]`
+
+> True Content
+
+`[` `else` `]`
+
+> False Content (optional)
+
+`[` `end` `space` `if` `]`
+
+<!-- Syntax: `[` `if` `Object` `space` `operator` `space` `Boolean Property` `]` -->
+
+<!-- Syntax: `[if` `space` `Object` `space` `operator` `space` `Boolean Property` `]` Positive `[else]` Negative `[end if]` -->
+
+<!-- Operators: `is` | `are` | `is not` | `are not` -->
+
+<!-- Values: `true` | `false` -->
+
+### Operators
+
+`is` | `are` | `is not` | `are not`
+
+```json
+{
+  "order": {
+    "paid": true
+  },
+  "vegetables": {
+    "fresh": true
+  }
+}
+```
+
+<!-- Syntax: `[if order is paid] .... [end if]` -->
+
+```rockplate
+[if order is paid]
+  Paid
+[else]
+  Unpaid
+[end if]
+```
+
+```rockplate
+I eat
+[if vegetables are fresh]
+  healthy
+[end if]
+vegetables 🥕🥦🍅🍆🥝🥬🥒🌶
+```
+
+## Repeat blocks - Arrays
+
+Repeat blocks can be used to loop through [Arrays](/data-structure#arrays)
+
+<!-- Syntax: `[repeat` `space` `Array` `]` `Inner Content` `[end repeat]` -->
+
+Syntax notation:
+
+`[` `repeat` `space` `ARRAY` `]`
+
+> Inner Content
+
+`[` `end` `space` `repeat` `]`
+
+```json
+{
+  "orders": [
+    {
+      "order": {
+        "status": "Paid",
+        "ref": "210045-674558-981560"
+      },
+      "discount": {
+        "available": false,
+        "amount": "5%"
+      }
+    }
+  ]
+}
+```
+
+```rockplate
+Your orders:
+[repeat orders]
+
+ Ref: [order ref]
+
+ Status: [order status]
+
+ [if discount is available]
+   Discount: [discount amount]
+ [end if]
+
+[end repeat]
+```
+
+<!-- NOTE: pascal has nothing to do with rockplate.
+Keywords of rockplate are keywords of pascal, so it has been used for syntax highlighting -->

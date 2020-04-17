@@ -26,6 +26,8 @@
     "react": "^16.13.0",
     "react-codemirror2": "^6.0.0",
     "react-dom": "^16.13.0",
+    "remark-slug": "^6.0.0",
+    "remark-toc": "^7.0.0",
     "rockplate": "^1.0.0-pre.13",
     "rockplate-codemirror": "^1.0.0-pre.3"
   },

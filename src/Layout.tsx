@@ -103,37 +103,6 @@ interface HideOnScrollProps extends Props {
   page?: string;
 }
 
-function HideOnScroll(props: HideOnScrollProps) {
-  const { children, window, page } = props;
-  const homepage = page === 'home';
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    threshold: 100,
-    target: window ? window() : undefined,
-  });
-  const triggerElevation = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 30,
-    target: window ? window() : undefined,
-  });
-
-  return (
-    <div
-      className={
-        homepage
-          ? 'appbar-homepage ' + (triggerElevation ? 'appbar-homepage-elevated' : 'appbar-homepage-muted')
-          : 'appbar-other'
-      }
-    >
-      {React.cloneElement(children, {
-        elevation: triggerElevation ? 4 : 0,
-      })}
-    </div>
-  );
-}
-
 function ScrollTop(props: Props) {
   const { children, window } = props;
   const classes = useStyles();
@@ -223,14 +192,6 @@ export default function Layout(props: LayoutProps) {
             title: 'Getting Started',
             link: '/getting-started',
           },
-          {
-            title: 'Data Structure',
-            link: '/data-structure',
-          },
-          {
-            title: 'Linter',
-            link: '/linter',
-          },
         ].map((menu, index) => (
           <NextLink key={menu.title} href={menu.link} passHref>
             <ListItem button component="a" selected={isSelected(menu)}>
@@ -243,21 +204,42 @@ export default function Layout(props: LayoutProps) {
       <List subheader={<ListSubheader>Language Reference</ListSubheader>}>
         {[
           {
-            title: 'Identifiers',
-            link: '/identifiers',
+            title: 'Data Structure',
+            link: '/data-structure',
           },
           {
-            title: 'Booleans',
-            link: '/booleans',
-          },
-          {
-            title: 'Arrays',
-            link: '/arrays',
+            title: 'Syntax',
+            link: '/syntax',
           },
         ].map((menu, index) => (
-          <ListItem button component="a" key={menu.title} href={menu.link} selected={isSelected(menu)}>
-            <ListItemText primary={menu.title} />
-          </ListItem>
+          <NextLink key={menu.title} href={menu.link} passHref>
+            <ListItem button component="a" selected={isSelected(menu)}>
+              <ListItemText primary={menu.title} />
+            </ListItem>
+          </NextLink>
+        ))}
+      </List>
+      <Divider />
+      <List subheader={<ListSubheader>Advanced</ListSubheader>}>
+        {[
+          {
+            title: 'Linter',
+            link: '/linter',
+          },
+          {
+            title: 'Tools',
+            link: '/tools',
+          },
+          {
+            title: 'Advanced Usage',
+            link: '/advanced-usage',
+          },
+        ].map((menu, index) => (
+          <NextLink key={menu.title} href={menu.link} passHref>
+            <ListItem button component="a" selected={isSelected(menu)}>
+              <ListItemText primary={menu.title} />
+            </ListItem>
+          </NextLink>
         ))}
       </List>
       <Divider />
@@ -269,11 +251,32 @@ export default function Layout(props: LayoutProps) {
     </div>
   );
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <HideOnScroll {...props}>
-        <AppBar color="transparent" elevation={0} position="fixed" className={classes.appBar}>
+  function HideOnScroll(prps: HideOnScrollProps) {
+    // const classes = useStyles();
+    const { children, window, page } = prps;
+    const homepage = page === 'home';
+    // Note that you normally won't need to set the window ref as useScrollTrigger
+    // will default to window.
+    // This is only being set here because the demo is in an iframe.
+    const trigger = useScrollTrigger({
+      threshold: 100,
+      target: window ? window() : undefined,
+    });
+    const triggerElevation = useScrollTrigger({
+      disableHysteresis: true,
+      threshold: 30,
+      target: window ? window() : undefined,
+    });
+
+    return (
+      <div
+        className={
+          homepage
+            ? 'appbar-homepage ' + (triggerElevation ? 'appbar-homepage-elevated' : 'appbar-homepage-muted')
+            : 'appbar-other'
+        }
+      >
+        <AppBar color="transparent" elevation={triggerElevation ? 4 : 0} position="fixed" className={classes.appBar}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -309,7 +312,17 @@ export default function Layout(props: LayoutProps) {
             </IconButton>
           </Toolbar>
         </AppBar>
-      </HideOnScroll>
+        {/* React.cloneElement(children, {
+        elevation: triggerElevation ? 4 : 0,
+      }) */}
+      </div>
+    );
+  }
+
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <HideOnScroll {...(props as any)}></HideOnScroll>
       <ThemeProvider theme={darkTheme}>
         <nav className={classes.drawer} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -349,7 +362,7 @@ export default function Layout(props: LayoutProps) {
         <Divider style={{ marginTop: '30px' }} />
         <div style={{ marginTop: '20px', marginBottom: '0', textAlign: 'center' }}>
           <div>
-            Made with love from&nbsp;
+            Made with ❤️ from&nbsp;
             <Link href="https://safrazik.com">Safraz Razik</Link>
           </div>
           <div style={{ marginTop: '10px' }}>

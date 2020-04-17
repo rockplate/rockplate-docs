@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import FooterLinks from '../src/FooterLinks';
 
 import React from 'react';
 import Layout from '../src/Layout';
@@ -84,6 +85,7 @@ const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => {
         </div>
         <IndexDocs />
       </div>
+      <FooterLinks step={0} next={{ link: '/getting-started', label: 'Getting Started' }} />
     </Layout>
   );
 };

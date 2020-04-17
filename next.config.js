@@ -1,4 +1,12 @@
-const withMDX = require('@next/mdx')();
+const toc = require('remark-toc');
+const slug = require('remark-slug');
+
+const withMDX = require('@next/mdx')({
+  options: {
+    remarkPlugins: [slug, toc],
+    rehypePlugins: [],
+  },
+});
 module.exports = withMDX();
 
 // next.config.js
