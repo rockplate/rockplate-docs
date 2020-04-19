@@ -1,1 +1,169 @@
 # Tools
+
+## Table of Contents
+
+## Rockplate VSCode Extension
+
+Official Rockplate Language Support Extension with Linter and Syntax Highlight for Visual Studio Code
+
+### Features
+
+- Syntax Highlighting for `.rpl` files
+- Linter with Errors and Warnings
+- Scope-aware auto completion (IntelliSense)
+- Hover hints support
+
+### Usage
+
+- Open Extensions tab and search `Rockplate VSCode` in Marketplace
+- Install [Rockplate VSCode](https://marketplace.visualstudio.com/items?itemName=safrazik.rockplate-vscode) Extension
+
+### Source Code
+
+[Source Code at GitHub](https://github.com/rockplate/rockplate-vscode)
+
+### Demo
+
+<div style={{ width: '100%', overflowX: 'auto' }}>
+
+![Rockplate VSCode](https://raw.githubusercontent.com/rockplate/rockplate-vscode/master/images/rockplate-demo.gif)
+
+</div>
+
+## Rockplate CodeMirror Plugin
+
+CodeMirror implementation for Rockplate Language. [Live Demo](https://rockplate.github.io/rockplate-codemirror/)
+
+### Features
+
+- Syntax highlighting for `rockplate` mode
+- Linting support
+- Code folding support
+
+### Usage
+
+```
+npm install rockplate-codemirror
+```
+
+```javascript
+import CodeMirror from 'codemirror';
+import { register } from 'rockplate-codemirror';
+
+register(CodeMirror);
+```
+
+with script tag:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/rockplate-codemirror@latest/dist/rockplate-codemirror.min.js"></script>
+```
+
+### Source Code
+
+[Source Code at GitHub](https://github.com/rockplate/rockplate-codemirror)
+
+### Demo
+
+```rockplate:tabs
+{
+  "brand": {
+    "name": "My Brand"
+  },
+  "customer": {
+    "name": "Customer Name"
+  },
+  "items": [
+    {
+      "item": {
+        "name": "Item 1",
+        "price": "$100"
+      },
+      "discount": {
+        "available": true,
+        "value": "5%"
+      }
+    },
+    {
+      "item": {
+        "name": "Item 2",
+        "price": "$85"
+      },
+      "discount": {
+        "available": false,
+        "amount": 0
+      }
+    }
+  ],
+  "order": {
+    "paid": true,
+    "total": "$185"
+  }
+}
+
+Dear [customer name],
+
+Thank you for your order. Your items will be shipped soon
+
+[--
+this is a comment that should be removed
+--]
+
+[something wrong]
+
+[repeat items]
+
+  [item name]: [item price]
+
+  [if discount is available] [-- this is a comment too --]
+      (Discount: [discount value])
+  [else]
+      (No Discount)
+  [end if]
+
+[end repeat]
+
+Total: [order total]
+
+Thanks
+[brand name]
+```
+
+## Rockplate Language Server
+
+[Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) implementation for Rockplate language which is used by Rockplate VSCode Extension
+
+### Features
+
+- Linting
+- Scope-awere code completion (IntelliSense)
+- Hover hints
+
+### Usage
+
+Refer to [Rockplate VSCode](https://github.com/rockplate/rockplate-vscode) for example usage
+
+```
+npm install rockplate-language-server
+```
+
+```javascript
+// run-server.js
+
+const rockplateServer = require('rockplate-language-server');
+// for non minified version: require('rockplate-language-server/dist/rockplate-language-server')
+
+rockplateServer.run();
+```
+
+```
+node run-server.js
+```
+
+### Source Code
+
+[Source Code at GitHub](https://github.com/rockplate/rockplate-language-server)
+
+## Rockplate tmLanguage file
+
+You can [download rockplate.tmLanguage.json here](https://raw.githubusercontent.com/rockplate/rockplate-vscode/master/syntaxes/rockplate.tmLanguage.json) which is used by `Rockplate VSCode` Extension

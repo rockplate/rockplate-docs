@@ -29,7 +29,7 @@ const schema = {
   },
 };
 const linter = new Linter(template, schema);
-// wait for linter.build().then(... when using async
+// wait for linter.build().then(... when using async schema resolver
 const result = linter.lint({
   my: {
     name: 'John',
