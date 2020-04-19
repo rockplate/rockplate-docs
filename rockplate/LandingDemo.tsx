@@ -64,7 +64,7 @@ export default class RockPlateIntroBlock extends React.Component<
   constructor(props: any) {
     super(props);
     const template = `[if you are a developer]
-  Keep calm and code
+  You code, you rock
   [you genius] 🤘
 [else]
   Stay home 😊 [-- Crisis --]
