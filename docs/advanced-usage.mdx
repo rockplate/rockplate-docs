@@ -1,1 +1,169 @@
 # Advanced Usage
+
+## Table of Contents
+
+## Builder and Parser
+
+You can achieve the same thing (but with more control) with `Builder` and `Parser` classes instead of `Rockplate` class seen on [Getting Started](getting-started#usage) section.
+
+You can achieve the same thing that was achieved with `Rockplate` class on [Getting Started](getting-started#usage) section, but with more control with `Builder` and `Parser` classes.
+
+```javascript
+import { Builder, Parser } from 'rockplate';
+
+const template = 'My name is [my name]';
+const schema = {
+  my: {
+    name: 'My Name',
+  },
+};
+const builder = new Builder(template, schema);
+// wait for builder.build().then(... when using async schema resolver
+console.log(builder.blocks);
+
+const parser = new Parser(builder);
+const output = parser.parse({
+  // you will get type hints
+  // for properties in schema as you type
+  my: {
+    name: 'Safraz Razik',
+  },
+});
+console.log(output); // My name is Safraz Razik
+```
+
+## Schema
+
+Schema can be passed as an object (recommended) or embedded into template (recommended only in standalone `.rpl` files)
+
+### Async schema
+
+When working with `.rpl` files, you can have your schema in an external json file, you should reference that json file from your rpl file by defining a json object on top of the file with only a key named `"schema"` with the json file path relative to the rpl file.
+
+`my-schema.json` file
+
+```json
+{
+  "my": {
+    "name": "My Name"
+  }
+}
+```
+
+`my-template.rpl` file
+
+```rockplate
+{
+    "schema": "./my-schema.json"
+}
+
+My name is [my name]
+```
+
+As seen on [Getting Started](getting-started#external-schema-file) section, you can pass a synchronous schema resolver function, or you can pass an asynchronous schema resolver with promises.
+
+```javascript
+import { Rockplate } from 'rockplate';
+import { readFile } from 'fs';
+import { resolve, dirname } from 'path';
+
+const getRpl = (templateFile) => {
+  const schemaResolver = (schemaUrl) => {
+    const filePath = resolve(dirname(templateFile), schemaUrl);
+    return new Promise((resolve, reject) => {
+      readFile(filePath, 'utf8', (err, fileContent) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(JSON.parse(fileContent));
+      });
+    });
+  };
+
+  return new Promise((resolve, reject) => {
+    readFile(templateFile, 'utf8', (err, template) => {
+      if (err) {
+        reject('template file could not be read');
+        return;
+      }
+      const rpl = new Rockplate(template, schemaResolver);
+      // important! - as schema is resolved asynchronously, you should wait for rpl.build() to resolve
+      rpl.build().then(() => {
+        resolve(rpl);
+      });
+    });
+  });
+};
+
+getRpl('/some/dir/my-template.rpl').then((rpl) => {
+  const output = rpl.parse({
+    // ...
+  });
+});
+```
+
+## Strict mode
+
+Strict mode is enabled automatically when you pass `schema` while creating Builder, Linter or Rockplate instance. You can override this setting via the third parameter.
+
+```javascript
+import { Builder, Rockplate, Linter } from 'rockplate';
+
+// ...
+
+const strict = false;
+const builder = new Builder(template, schema, strict);
+const rockplate = new Rockplate(template, schema, strict);
+const linter = new Linter(template, schema, strict);
+
+// ...
+```
+
+## Linter
+
+When working with standalone `.rpl` files, Linter can be created with schema (strict mode) and params can be omitted when linting.
+
+```javascript
+import { Linter } from 'rockplate';
+
+const template = 'My name is [my name]';
+const schema = {
+  my: {
+    name: 'My Name',
+  },
+};
+// with schema
+const linter = new Linter(template, schema);
+// without params
+const result = linter.lint();
+```
+
+Meanwhile, Linter can be created without schema (non strict mode) and params can be passed for linting on the fly.
+
+```javascript
+import { Linter } from 'rockplate';
+
+const template = 'My name is [my name]';
+// without schema
+const linter = new Linter(template);
+// with params
+const result = linter.lint({
+  my: {
+    name: 'Safraz',
+  },
+});
+```
+
+When you do not want the linter to resolve the lines the errors occured, set the second argument of `lint()` method to `false`
+
+```javascript
+import { Linter } from 'rockplate';
+
+// ...
+
+const resolveLines = false;
+
+const linter = new Linter(template, schema);
+const result = linter.lint(params, resolveLines);
+```
