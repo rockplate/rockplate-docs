@@ -28,7 +28,7 @@ import './styles.css';
 
 const NextLinkWrapped = (props: any) => (
   <NextLink href={props.href} passHref>
-    <a className={props.className}>{props.children}</a>
+    <a {...props} />
   </NextLink>
 );
 
@@ -38,12 +38,11 @@ const mdxComponents = {
     return <Highlight {...props} />;
   },
   a: (props: any) => {
+    const href: string = props.href;
+    if ((href && href.indexOf('#') === 0) || href.indexOf('http') === 0) {
+      return <Link {...props} />;
+    }
     return <Link component={NextLinkWrapped} {...props} />;
-    return (
-      <NextLink {...props} passHref>
-        <Link {...props} />;
-      </NextLink>
-    );
   },
 };
 
