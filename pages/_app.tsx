@@ -21,14 +21,11 @@ import 'codemirror/addon/lint/lint.css';
 import 'codemirror/addon/fold/foldgutter.css';
 import 'codemirror/theme/dracula.css';
 import 'codemirror/theme/monokai.css';
-// import 'codemirror/theme/rubyblue.css';
-// import 'codemirror/theme/blackboard.css';
 import './styles.css';
-// }
 
-const NextLinkWrapped = (props: any) => (
+const NextLinkComponent = (props: any) => (
   <NextLink href={props.href} passHref>
-    <a {...props} />
+    <Link {...props} />
   </NextLink>
 );
 
@@ -42,7 +39,7 @@ const mdxComponents = {
     if ((href && href.indexOf('#') === 0) || href.indexOf('http') === 0) {
       return <Link {...props} />;
     }
-    return <Link component={NextLinkWrapped} {...props} />;
+    return <NextLinkComponent {...props} />;
   },
 };
 
