@@ -12,6 +12,12 @@ export default class RockplateDocsDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={themeColor} />
+
+          <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         </Head>
