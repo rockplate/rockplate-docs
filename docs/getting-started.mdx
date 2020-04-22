@@ -2,6 +2,21 @@
 
 ## Table of Contents
 
+## Implementations
+
+<!-- Currently Rockplate has the default official implementation for browser and Node Js which is production ready. When other language implementations are available, the documentation will include them too. Watch out the [rockplate organization](https://github.com/rockplate) for any ongoing work.
+
+--- -->
+
+Currently Rockplate has the default official implementation for browser and Node Js which is production ready. When other language implementations are available, the documentation will include them too.
+
+- Built with TypeScript
+- No dependencies but small footprint
+- Zero RegEx lexer/AST builder
+- Battle tested with 🔥 **100%** code coverage
+
+Watch out the [rockplate organization](https://github.com/rockplate) for any ongoing work. We welcome your contributions. Please name your implementation `rockplate-<langname>`. E.g: `rockplate-python`, `rockplate-csharp`, etc.
+
 ## Installation
 
 Installing with `npm` or `yarn`
@@ -55,9 +70,9 @@ var rpl = new Rockplate(template, schema);
 
 See [Advanced Usage](/advanced-usage#builder-and-parser) section to learn how to use the `Builder` and `Parser` classes directly instead of `Rockplate` class.
 
-## Usage with an `.rpl` file
+## Usage with an `.rpl` and `.rphtml` file
 
-NOTE: If you're using Visual Studio Code, install the [Official Extension](https://marketplace.visualstudio.com/items?itemName=safrazik.rockplate-vscode) to get IntelliSense and Linting support for `.rpl` files.
+NOTE: If you're using Visual Studio Code, install the [Official Extension](https://marketplace.visualstudio.com/items?itemName=safrazik.rockplate-vscode) to get IntelliSense and Linting support for `.rpl` and `.rphtml` files.
 
 <div style={{ width: '100%', overflowX: 'auto' }}>
 
@@ -65,7 +80,7 @@ NOTE: If you're using Visual Studio Code, install the [Official Extension](https
 
 </div>
 
-You can embed schema in an `.rpl` file in json format on top of the file.
+You can embed schema in an `.rpl` or `.rphtml` file in json format on top of the file.
 
 `my-template.rpl`
 

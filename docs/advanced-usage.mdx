@@ -34,11 +34,11 @@ console.log(output); // My name is Safraz Razik
 
 ## Schema
 
-Schema can be passed as an object (recommended) or embedded into template (recommended only in standalone `.rpl` files)
+Schema can be passed as an object (recommended) or embedded into template (recommended only in standalone `.rpl` and `.rphtml` files)
 
 ### Async schema
 
-When working with `.rpl` files, you can have your schema in an external json file, you should reference that json file from your rpl file by defining a json object on top of the file with only a key named `"schema"` with the json file path relative to the rpl file.
+When working with `.rpl` and `.rphtml` files, you can have your schema in an external json file, you should reference that json file from your rpl file by defining a json object on top of the file with only a key named `"schema"` with the json file path relative to the rpl file.
 
 `my-schema.json` file
 
@@ -122,7 +122,7 @@ const linter = new Linter(template, schema, strict);
 
 ## Linter
 
-When working with standalone `.rpl` files, Linter can be created with schema (strict mode) and params can be omitted when linting.
+When working with standalone `.rpl` and `.rphtml` files, Linter can be created with schema (strict mode) and params can be omitted when linting.
 
 ```javascript
 import { Linter } from 'rockplate';
