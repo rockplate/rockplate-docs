@@ -1,6 +1,6 @@
 {
   "name": "rockplate-docs",
-  "version": "1.0.0-pre.1",
+  "version": "1.0.0",
   "description": "Documentation site of Rockplate",
   "main": "index.js",
   "scripts": {
@@ -15,28 +15,28 @@
   "author": "Safraz Razik",
   "license": "MIT",
   "dependencies": {
-    "@material-ui/core": "^4.9.5",
+    "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.45",
-    "@mdx-js/loader": "^1.5.7",
-    "@next/mdx": "^9.2.2",
-    "codemirror": "^5.52.0",
+    "@material-ui/lab": "^4.0.0-alpha.50",
+    "@mdx-js/loader": "^1.5.9",
+    "@next/mdx": "^9.3.5",
+    "codemirror": "^5.53.2",
     "jsonlint": "^1.6.3",
-    "next": "^9.2.2",
-    "react": "^16.13.0",
-    "react-codemirror2": "^6.0.0",
-    "react-dom": "^16.13.0",
+    "next": "^9.3.5",
+    "react": "^16.13.1",
+    "react-codemirror2": "^7.1.0",
+    "react-dom": "^16.13.1",
     "remark-slug": "^6.0.0",
     "remark-toc": "^7.0.0",
-    "rockplate": "^1.0.0-pre.13",
-    "rockplate-codemirror": "^1.0.0-pre.3"
+    "rockplate": "^1.0.0",
+    "rockplate-codemirror": "^1.0.0"
   },
   "devDependencies": {
-    "@types/codemirror": "0.0.87",
-    "@types/node": "^13.9.0",
-    "@types/react": "^16.9.23",
+    "@types/codemirror": "0.0.91",
+    "@types/node": "^13.13.2",
+    "@types/react": "^16.9.34",
     "copyfiles": "^2.2.0",
-    "tslint": "^6.1.0",
+    "tslint": "^6.1.1",
     "typescript": "^3.8.3"
   }
 }
