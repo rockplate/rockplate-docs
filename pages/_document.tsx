@@ -20,6 +20,17 @@ export default class RockplateDocsDocument extends Document {
 
           <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+          {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146428731-4"></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-146428731-4');`,
+            }}
+          />
         </Head>
         <body>
           <Main />
@@ -28,21 +39,21 @@ export default class RockplateDocsDocument extends Document {
           <script
             dangerouslySetInnerHTML={{
               __html: `window.twttr = (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0],
-              t = window.twttr || {};
-            if (d.getElementById(id)) return t;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
+                var js, fjs = d.getElementsByTagName(s)[0],
+                  t = window.twttr || {};
+                if (d.getElementById(id)) return t;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
 
-            t._e = [];
-            t.ready = function(f) {
-              t._e.push(f);
-            };
+                t._e = [];
+                t.ready = function(f) {
+                  t._e.push(f);
+                };
 
-            return t;
-          }(document, "script", "twitter-wjs"));`,
+                return t;
+              }(document, "script", "twitter-wjs"));`,
             }}
           />
         </body>
