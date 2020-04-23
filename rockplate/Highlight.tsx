@@ -5,17 +5,6 @@ import { Rockplate, Builder } from 'rockplate';
 
 type Mode = 'javascript' | 'rockplate' | 'json' | 'html';
 
-const options = {
-  theme: 'dracula',
-  mode: 'rockplate' as any,
-  lineNumbers: true,
-  lineWrapping: true,
-  foldGutter: true,
-  gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
-  lint: true,
-  viewportMargin: Infinity,
-};
-
 type Language = Mode | 'rockplate:tabs';
 
 export interface HighlightProps {
@@ -57,6 +46,16 @@ export default class Highlight extends React.Component<
       }
       this.language = 'rockplate';
     }
+    const options = {
+      theme: 'dracula',
+      mode: 'rockplate' as any,
+      lineNumbers: true,
+      lineWrapping: true,
+      foldGutter: true,
+      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
+      lint: true,
+      viewportMargin: Infinity,
+    };
     options.lint = this.language !== 'rockplate';
     options.theme = this.language === 'rockplate' || this.language === 'json' ? 'dracula' : 'monokai';
     options.mode = this.language === 'json' ? { name: 'javascript', json: this.language === 'json' } : this.language;
