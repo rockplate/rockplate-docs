@@ -86,14 +86,14 @@ export default class RockplateDocsApp extends App<{}, {}, { themeOptions: ThemeO
           <meta name="twitter:site" content="@safrazik" />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="[🤘] Rockplate" />
-          <meta name="twitter:description" content="Next generation templating language for sensible humans" />
+          <meta name="twitter:description" content="Next generation programming language for templates" />
 
           <meta property="og:image" content="https://rockplate.github.io/rockplate-cover.png?v=1.0.0-pre.1" />
           <meta property="og:site_name" content="GitHub" />
           <meta property="og:type" content="object" />
           <meta property="og:title" content="[🤘] Rockplate" />
           <meta property="og:url" content="https://rockplate.github.io" />
-          <meta property="og:description" content="Next generation templating language for sensible humans" />
+          <meta property="og:description" content="Next generation programming language for templates" />
         </Head>
         <ThemeProvider theme={theme}>
           <MDXProvider components={mdxComponents}>
