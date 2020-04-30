@@ -46,7 +46,7 @@ const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => {
               marginBottom: '45px',
             }}
           >
-            Templating language for sensible humans
+            Next generation programming language for templates
           </h3>
         </div>
         <LandingDemo />
