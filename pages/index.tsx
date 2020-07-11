@@ -50,15 +50,6 @@ const Home: NextPage<{ userAgent: string }> = ({ userAgent }) => {
           </h3>
         </div>
         <LandingDemo />
-        <Alert style={{ marginTop: '30px' }} severity="info">
-          <AlertTitle>Quarantine Quiz</AlertTitle>
-          <div>
-            What happens when you change <code>[you genius]</code> to <code>[you idiot]</code> in live code editor?
-          </div>
-          <div style={{ marginTop: '10px' }}>
-            <Link href="https://github.com/rockplate/rockplate/issues/2">Click here to answer</Link>
-          </div>
-        </Alert>
         <div style={{ textAlign: 'center', marginTop: '30px' }}>
           <NextLink href="/getting-started" passHref>
             <Button
