@@ -63,11 +63,11 @@ As seen on [Getting Started](getting-started#external-schema-file) section, you 
 ```javascript
 import { Rockplate } from 'rockplate';
 import { readFile } from 'fs';
-import { resolve, dirname } from 'path';
+import { resolve as resolvePath, dirname } from 'path';
 
 const getRpl = (templateFile) => {
   const schemaResolver = (schemaUrl) => {
-    const filePath = resolve(dirname(templateFile), schemaUrl);
+    const filePath = resolvePath(dirname(templateFile), schemaUrl);
     return new Promise((resolve, reject) => {
       readFile(filePath, 'utf8', (err, fileContent) => {
         if (err) {
