@@ -20,7 +20,7 @@
     "@material-ui/lab": "^4.0.0-alpha.50",
     "@mdx-js/loader": "^1.5.9",
     "@next/mdx": "^9.3.5",
-    "codemirror": "^5.53.2",
+    "codemirror": "^5.58.2",
     "jsonlint": "^1.6.3",
     "next": "^9.3.5",
     "react": "^16.13.1",
